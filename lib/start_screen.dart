@@ -8,10 +8,18 @@ class StartScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            "assets/images/pngwing.com.png",
-            width: 300,
-          ),
+            Image.asset(
+              "assets/images/pngwing.com.png",
+              width: 300, //better approach for attaining opacity.
+              color: const Color.fromARGB(150, 255, 255, 255) //Set first no. from 0 to 255 for opacity.
+            ),
+          /* Opacity( //Alternative approach for opacity
+            opacity: 0.6,
+            child: Image.asset(
+              "assets/images/pngwing.com.png",
+              width: 300,
+            ),
+          ) */
           const SizedBox(height: 80), // gives a blank space.
           const Text(
             "Learn Flutter The Fun Way.",
@@ -21,12 +29,13 @@ class StartScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          OutlinedButton(
+          OutlinedButton.icon( // for using icon use icon constructor and replace child by label.
             onPressed: () {},
             style: OutlinedButton.styleFrom(
               foregroundColor: Colors.white,
             ),
-            child: const Text("Start Quizz!"),
+            icon: const Icon(Icons.arrow_right_alt),
+            label: const Text("Start Quizz!"),
           )
         ],
       ),
