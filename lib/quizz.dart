@@ -23,7 +23,7 @@ class _QuizState extends State<Quizz> {
   var activeScreen = 'start_screen';
   void switchScreen()  {
     setState(() {
-      activeScreen = 'questions_screen'; //const QuestionsScreen();
+      activeScreen = 'questions_screen'; //const QuestionsScreen();(if not using the ternary way)
     });
   }
   
@@ -43,7 +43,9 @@ class _QuizState extends State<Quizz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child:  activeScreen == 'start_screen' ? StartScreen(switchScreen) : const QuestionsScreen(),
+          child: activeScreen == 'start_screen'
+              ? StartScreen(switchScreen)
+              : const QuestionsScreen(), // ternary exprression we can also use if / else statement
         ),
       ),
     );
