@@ -12,9 +12,16 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  var currentQuestionIndex = 0;
+  void answerQuestion(){
+    setState(() { //when the answerQues method will run it'll set the state again.
+      currentQuestionIndex += 1;
+    });
+    
+  }
   @override
   Widget build(context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
       width: double
           .infinity, // assigning this column the whole screen we can also do "mainAxisSize: MainAxisSize.min" inside the column.
@@ -32,7 +39,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ),
             const SizedBox(height: 30),
             ...currentQuestion.getShuffledAnswers().map((answer) { //... is used for spreading (takes all values from list or itrables and are added as , seperated individual items.)
-              return AnswerButton(answerText: answer, onTap: () {},);
+              return AnswerButton(answerText: answer, onTap: answerQuestion,);
             }),// map will pass the provided functions or any passed functionality to it's listItems. 
             /* this was hardcoded 
             AnswerButton(answerText: currentQuestion.answers[0], onTap: () {}),
