@@ -26,13 +26,16 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             style: const TextStyle(color: Colors.black),
           ),
           const SizedBox(height: 30),
-          AnswerButton(answerText: currentQuestion.answers[0], onTap: () {}),
+          ...currentQuestion.answers.map((answer) { //... is used for spreading (takes all values from list or itrables and are added as , seperated individual items.)
+            return AnswerButton(answerText: answer, onTap: () {},);
+          }),// map will pass the provided functions or any passed functionality to it's listItems. 
+          /* AnswerButton(answerText: currentQuestion.answers[0], onTap: () {}),
           const SizedBox(height: 10),
           AnswerButton(answerText: currentQuestion.answers[1], onTap: () {}),
           const SizedBox(height: 10),
           AnswerButton(answerText: currentQuestion.answers[2], onTap: () {}),
           const SizedBox(height: 10),
-          AnswerButton(answerText: currentQuestion.answers[3], onTap: () {}),
+          AnswerButton(answerText: currentQuestion.answers[3], onTap: () {}), */
         ],
       ),
     );
