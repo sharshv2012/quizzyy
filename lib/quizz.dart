@@ -13,15 +13,17 @@ class Quizz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quizz> {
-  Widget ? activeScreen ; // assigning the widget StartScreen to a variable oftype Widget. 
+  /* Widget ? activeScreen ; // assigning the widget StartScreen to a variable oftype Widget. 
   @override
   void initState() {
     activeScreen = StartScreen(switchScreen);
     super.initState();
-  }
+  } */
+ // using ternary conditional statement for lifting the state up insted of whole init thing.
+  var activeScreen = 'start_screen';
   void switchScreen()  {
     setState(() {
-      activeScreen = const QuestionsScreen();
+      activeScreen = 'questions_screen'; //const QuestionsScreen();
     });
   }
   
@@ -41,7 +43,7 @@ class _QuizState extends State<Quizz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child:  activeScreen,
+          child:  activeScreen == 'start_screen' ? StartScreen(switchScreen) : const QuestionsScreen(),
         ),
       ),
     );
