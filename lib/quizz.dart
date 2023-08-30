@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzyy/questions_screen.dart';
 import 'package:quizzyy/start_screen.dart';
 
 class Quizz extends StatefulWidget {
@@ -12,7 +13,18 @@ class Quizz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quizz> {
-
+  Widget ? activeScreen ; // assigning the widget StartScreen to a variable oftype Widget. 
+  @override
+  void initState() {
+    activeScreen = StartScreen(switchScreen);
+    super.initState();
+  }
+  void switchScreen()  {
+    setState(() {
+      activeScreen = const QuestionsScreen();
+    });
+  }
+  
 
   @override
   Widget build(context) {
@@ -29,7 +41,7 @@ class _QuizState extends State<Quizz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: const StartScreen(),
+          child:  activeScreen,
         ),
       ),
     );
