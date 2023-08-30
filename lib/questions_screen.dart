@@ -18,25 +18,29 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     return SizedBox(
       width: double
           .infinity, // assigning this column the whole screen we can also do "mainAxisSize: MainAxisSize.min" inside the column.
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currentQuestion.text,
-            style: const TextStyle(color: Colors.black),
-          ),
-          const SizedBox(height: 30),
-          ...currentQuestion.answers.map((answer) { //... is used for spreading (takes all values from list or itrables and are added as , seperated individual items.)
-            return AnswerButton(answerText: answer, onTap: () {},);
-          }),// map will pass the provided functions or any passed functionality to it's listItems. 
-          /* AnswerButton(answerText: currentQuestion.answers[0], onTap: () {}),
-          const SizedBox(height: 10),
-          AnswerButton(answerText: currentQuestion.answers[1], onTap: () {}),
-          const SizedBox(height: 10),
-          AnswerButton(answerText: currentQuestion.answers[2], onTap: () {}),
-          const SizedBox(height: 10),
-          AnswerButton(answerText: currentQuestion.answers[3], onTap: () {}), */
-        ],
+      child: Container(
+        margin: const EdgeInsets.all(30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          
+          children: [
+            Text(
+              currentQuestion.text,
+              style: const TextStyle(color: Colors.black),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+            ...currentQuestion.getShuffledAnswers().map((answer) { //... is used for spreading (takes all values from list or itrables and are added as , seperated individual items.)
+              return AnswerButton(answerText: answer, onTap: () {},);
+            }),// map will pass the provided functions or any passed functionality to it's listItems. 
+            /* this was hardcoded 
+            AnswerButton(answerText: currentQuestion.answers[0], onTap: () {}),
+            const SizedBox(height: 10),
+            AnswerButton(answerText: currentQuestion.answers[1], onTap: () {}),
+             */
+          ],
+        ),
       ),
     );
   }
