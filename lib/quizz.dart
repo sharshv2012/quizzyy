@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizzyy/data/questions.dart';
 import 'package:quizzyy/questions_screen.dart';
+import 'package:quizzyy/results_screen.dart';
 import 'package:quizzyy/start_screen.dart';
 
 class Quizz extends StatefulWidget {
@@ -33,7 +34,7 @@ class _QuizState extends State<Quizz> {
 
     if(selectedAnswer.length == questions.length){
       setState(() {
-        activeScreen = 'start_screen';
+        activeScreen = 'results_screen';
         selectedAnswer.clear();
       });
     }
@@ -42,6 +43,13 @@ class _QuizState extends State<Quizz> {
   @override
   Widget build(context) {
 
+    Widget screenWidget = StartScreen(switchScreen);
+    if (activeScreen == 'questions_screen'){
+      screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
+    }
+    if(activeScreen == 'results_screen'){
+      screenWidget = const ResultsScreen();
+    }
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -54,9 +62,9 @@ class _QuizState extends State<Quizz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: activeScreen == 'start_screen'
+          child: screenWidget, /* activeScreen == 'start_screen'
               ? StartScreen(switchScreen)
-              : QuestionsScreen(onSelectAnswer: chooseAnswer,), // ternary exprression we can also use if / else statement
+              : ,(onSelectAnswer: chooseAnswer,), // ternary exprression we can also use if / else statement  */
         ),
       ),
     );
