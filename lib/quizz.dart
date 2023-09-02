@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzyy/data/questions.dart';
 import 'package:quizzyy/questions_screen.dart';
 import 'package:quizzyy/start_screen.dart';
 
@@ -20,13 +21,23 @@ class _QuizState extends State<Quizz> {
     super.initState();
   } */
  // using ternary conditional statement for lifting the state up insted of whole init thing.
+  final List<String> selectedAnswer = [];
   var activeScreen = 'start_screen';
   void switchScreen()  {
     setState(() {
       activeScreen = 'questions_screen'; //const QuestionsScreen();(if not using the ternary way)
     });
   }
-  
+  void chooseAnswer(String answer){
+    selectedAnswer.add(answer);
+
+    if(selectedAnswer.length == questions.length){
+      setState(() {
+        activeScreen = 'start_screen';
+        selectedAnswer.clear();
+      });
+    }
+  }
 
   @override
   Widget build(context) {
@@ -45,7 +56,7 @@ class _QuizState extends State<Quizz> {
           ),
           child: activeScreen == 'start_screen'
               ? StartScreen(switchScreen)
-              : const QuestionsScreen(), // ternary exprression we can also use if / else statement
+              : QuestionsScreen(onSelectAnswer: chooseAnswer,), // ternary exprression we can also use if / else statement
         ),
       ),
     );

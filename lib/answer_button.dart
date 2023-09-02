@@ -20,7 +20,7 @@ final void Function() onTap ;
                 foregroundColor: Colors.black ,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
               ),
-              child: Text(answerText), // can't use const here because answerText is a variable.
+              child: Text(answerText , textAlign: TextAlign.center,), // can't use const here because answerText is a variable.
             ),
     );
   }
