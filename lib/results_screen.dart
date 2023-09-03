@@ -1,23 +1,35 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:quizzyy/data/questions.dart';
 import 'package:quizzyy/questions_summary.dart';
 
+
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key , required this.chosenAnswer,});
+  const ResultsScreen({
+    super.key,
+    required this.chosenAnswer,
+    required this.onRestart,
+  });
 
   final List<String> chosenAnswer;
+  final void Function() onRestart;
 
-  List<Map<String , Object>> getSummaryData(){
-
-    final List <Map<String ,Object>> summary = [];
-    for(var i = 0 ; i < chosenAnswer.length ; i++){
-      summary.add({ // giving key-value pairs.
-        'qustion_index' : i ,
-        'question' : questions[i].text,
-        'correct_answer' : questions[i].answers[0],
-        'user_answer' : chosenAnswer[i]
-
-      });
+  List<Map<String, Object>> getSummaryData() {
+    final List<Map<String, Object>> summary = [];
+    
+    for (var i = 0 ; i < chosenAnswer.length; i++) {
+      
+      summary.add(
+        {
+          // giving key-value pairs.
+          'qustion_index': i,
+          
+          'question': questions[i].text,
+          'correct_answer': questions[i].answers[0],
+          'user_answer': chosenAnswer[i]
+        },
+      );
     }
     return summary;
   }
@@ -26,7 +38,7 @@ class ResultsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
-    final numCorrectQuestion = summaryData.where((data){
+    final numCorrectQuestion = summaryData.where((data) {
       return data['user_answer'] == data['correct_answer'];
     }).length; // getting no. of correct answers.
 
@@ -38,11 +50,15 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("You Answered $numCorrectQuestion Out Of $numTotalQuestions Questions Correctly."),
+            Text(
+                "You Answered $numCorrectQuestion Out Of $numTotalQuestions Questions Correctly." , style: const TextStyle(fontWeight: FontWeight.bold ,fontSize: 20, color: Colors.black),textAlign: TextAlign.center,),
             const SizedBox(height: 30),
             QuestionsSummary(summaryData),
-            const SizedBox(height: 30,),
-            TextButton(onPressed: (){}, child: const Text("RestartQuizz"))
+            const SizedBox(
+              height: 30,
+            ),
+            TextButton(onPressed: onRestart
+              , child: const Text("RestartQuizz"))
           ],
         ),
       ),
