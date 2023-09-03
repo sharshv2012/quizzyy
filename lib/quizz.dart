@@ -22,7 +22,7 @@ class _QuizState extends State<Quizz> {
     super.initState();
   } */
  // using ternary conditional statement for lifting the state up insted of whole init thing.
-  final List<String> selectedAnswer = [];
+  final List<String> selectedAnswers = [];
   var activeScreen = 'start_screen';
   void switchScreen()  {
     setState(() {
@@ -30,12 +30,12 @@ class _QuizState extends State<Quizz> {
     });
   }
   void chooseAnswer(String answer){
-    selectedAnswer.add(answer);
+    selectedAnswers.add(answer);
 
-    if(selectedAnswer.length == questions.length){
+    if(selectedAnswers.length == questions.length){
       setState(() {
         activeScreen = 'results_screen';
-        selectedAnswer.clear();
+        selectedAnswers.clear();
       });
     }
   }
@@ -48,7 +48,7 @@ class _QuizState extends State<Quizz> {
       screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
     }
     if(activeScreen == 'results_screen'){
-      screenWidget = const ResultsScreen();
+      screenWidget = ResultsScreen(chosenAnswer: selectedAnswers,);
     }
     return MaterialApp(
       home: Scaffold(
