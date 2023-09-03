@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzyy/data/questions.dart';
+import 'package:quizzyy/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({super.key , required this.chosenAnswer,});
@@ -23,6 +24,12 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final numTotalQuestions = questions.length;
+    final numCorrectQuestion = summaryData.where((data){
+      return data['user_answer'] == data['correct_answer'];
+    }).length; // getting no. of correct answers.
+
     return SizedBox(
       width: double
           .infinity, // assigning this column the whole screen we can also do "mainAxisSize: MainAxisSize.min" inside the column.
@@ -31,11 +38,11 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("you answered x out of y questions correctly."),
+            Text("You Answered $numCorrectQuestion Out Of $numTotalQuestions Questions Correctly."),
             const SizedBox(height: 30),
-            const Text("List of answers and Questions."),
+            QuestionsSummary(summaryData),
             const SizedBox(height: 30,),
-            TextButton(onPressed: (){}, child: Text("RestartQuizz"))
+            TextButton(onPressed: (){}, child: const Text("RestartQuizz"))
           ],
         ),
       ),
