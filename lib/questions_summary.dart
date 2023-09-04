@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzyy/questions_screen.dart';
 
 class QuestionsSummary extends StatelessWidget {
   const QuestionsSummary(this.summaryData, {super.key});
@@ -7,7 +8,6 @@ class QuestionsSummary extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    
     return SizedBox(
       height: 300,
       child: SingleChildScrollView(
@@ -21,9 +21,9 @@ class QuestionsSummary extends StatelessWidget {
                 alignment: Alignment.center,
                 
                 decoration: BoxDecoration(color : data['user_answer'] == data['correct_answer'] ? const Color.fromARGB(255, 91, 236, 221) : const Color.fromARGB(255, 226, 88, 88) , borderRadius: BorderRadius.circular(100)),
-                child: Text(
-                  (((data['question_index']?? 0) as int)  + 1).toString(),
-                  style: const TextStyle(
+                child: const Text(
+                       "",//(((data['question_index']?? 0) as int)  + 1).toString(),
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -33,7 +33,7 @@ class QuestionsSummary extends StatelessWidget {
                 // to make the display tidy.
                 child: Column(
                   children: [
-                    Text(data['question'] as String , textAlign: TextAlign.center,),
+                    Text("Ques:  ${data['question'] as String}" , textAlign: TextAlign.center,),
                     const SizedBox(
                       height: 5,
                     ),
