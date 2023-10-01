@@ -56,4 +56,54 @@ List questions = [
       'By calling updateState()',
     ],
   ),
+
+  const QuizQuestion(
+    'What are some key advantages of Flutter over alternate frameworks?',
+    [
+      'All of them',
+      'Rapid cross-platform application development and debugging tools',
+      'Future-proofed technologies and UI resources',
+      'Strong supporting tools for application development and launch',
+    ],
+  ),
+
+  const QuizQuestion(
+    'What element is used as an identifier for components when programming in Flutter?',
+    [
+      'Keys',
+      'Widgets',
+      'Elements',
+      'Serial',
+    ],
+  ),
+
+  const QuizQuestion(
+    'True or false: Flutter boasts improved runtime performance over most application frameworks.',
+    [
+      'true',
+      'false',
+    ],
+  ),
+
+  const QuizQuestion(
+    'Which function will return the widgets attached to the screen as a root of the widget tree to be rendered on screen?',
+    [
+      'runApp()',
+      'main()',
+      'container()',
+      'root()',
+    ],
+  ),
+
+  const QuizQuestion(
+    'What is the key configuration file used when building a Flutter project?',
+    [
+      'pubspec.yaml',
+      'pubspec.xml',
+      'config.html',
+      'root.xml',
+    ],
+  ),
+
+
 ];

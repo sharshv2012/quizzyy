@@ -23,7 +23,7 @@ class ResultsScreen extends StatelessWidget {
       summary.add(
         {
           // giving key-value pairs.
-          'qustion_index': i,
+          'question_index': i,
           
           'question': questions[i].text,
           'correct_answer': questions[i].answers[0],

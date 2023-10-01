@@ -21,9 +21,9 @@ class QuestionsSummary extends StatelessWidget {
                 alignment: Alignment.center,
                 
                 decoration: BoxDecoration(color : data['user_answer'] == data['correct_answer'] ? const Color.fromARGB(255, 91, 236, 221) : const Color.fromARGB(255, 226, 88, 88) , borderRadius: BorderRadius.circular(100)),
-                child: const Text(
-                       "",//(((data['question_index']?? 0) as int)  + 1).toString(),
-                  style: TextStyle(
+                child: Text(
+                       (((data['question_index']) as int)  + 1).toString(),
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
